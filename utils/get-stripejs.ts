@@ -6,7 +6,7 @@ import { Stripe, loadStripe } from '@stripe/stripe-js'
 let stripePromise: Promise<Stripe | null>
 const getStripe = () => {
   if (!stripePromise) {
-    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+    stripePromise = loadStripe("pk_test_51IIbumKCclKMvAZGCyST92Vflq2l5z3MMGe3HxyZ0bY63XHxs3VCIkXDyM0iN1tziVmLEaWJGNyOYxofOuzxqhEC00sIF0Qdht"!)
   }
   return stripePromise
 }

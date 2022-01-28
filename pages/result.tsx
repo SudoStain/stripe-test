@@ -28,7 +28,7 @@ const ResultPage: NextPage = () => {
 
   const submitStripInfo = async () =>{
     console.log("data", data); 
-    const  striperesponse  = await axios.post('/subscriptions', {
+    const  striperesponse  = await axios.post('/create-subscription', {
       data
     });
     console.log("striperesponse", striperesponse);

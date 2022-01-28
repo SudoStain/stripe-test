@@ -19,7 +19,7 @@ export async function fetchPostJSON(url: string, data?: {}) {
       headers: {
         'Content-Type': 'application/json',
         // 'Content-Type': 'application/x-www-form-urlencoded',
-        // 'Authorization': Bearer "sk_test_51IIbumKCclKMvAZGpX63ZRPvzLlgoowr3pzggWCjX0tHeC8pOZok4FfotP9wmURMZzkAU8GwIHIXYQ2WZXdmV1fF00JYwFhivH"
+        // 'Authorization': Bearer process.env.STRIPE_SECRET_KEY
       },
       redirect: 'follow', // manual, *follow, error
       referrerPolicy: 'no-referrer', // no-referrer, *client

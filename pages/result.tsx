@@ -8,6 +8,7 @@ import ClearCart from '../components/ClearCart'
 
 import { fetchGetJSON } from '../utils/api-helpers'
 import useSWR from 'swr'
+import axios from 'axios'
 
 const ResultPage: NextPage = () => {
   const router = useRouter()
@@ -22,6 +23,21 @@ const ResultPage: NextPage = () => {
   )
 
   if (error) return <div>failed to load</div>
+
+  
+
+  const submitStripInfo = async () =>{
+    console.log("data", data); 
+    const  striperesponse  = await axios.post('/subscriptions', {
+      data
+    });
+    console.log("striperesponse", striperesponse);
+
+    // process response here
+    
+  }
+  
+  submitStripInfo();
 
   return (
     <Layout title="Checkout Payment Result | Next.js + TypeScript Example">

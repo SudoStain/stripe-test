@@ -27,13 +27,24 @@ const ResultPage: NextPage = () => {
   
 
   const submitStripInfo = async () =>{
-    console.log("data", data); 
-    const  striperesponse  = await axios.post('/create-subscription', {
-      data
-    });
-    console.log("striperesponse", striperesponse);
+    console.log("data", data);
 
-    // process response here
+    axios({
+      method: 'post',
+      url: 'http://localhost:8000/api/create-subscription',
+      data : data,
+      headers : {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+      }
+    })
+      .then(res => {
+        console.log("response", res);
+        
+      }).catch((error) => {
+        console.log("error", error);
+        
+      });
     
   }
   

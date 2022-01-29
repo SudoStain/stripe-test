@@ -15,31 +15,38 @@ const ResultPage: NextPage = () => {
 
   // Fetch CheckoutSession from static page via
   // https://nextjs.org/docs/basic-features/data-fetching#static-generation
-  const { data, error } = useSWR(
+  let { data, error } = useSWR(
     router.query.session_id
       ? `/api/checkout_sessions/${router.query.session_id}`
       : null,
     fetchGetJSON
   )
+  
 
   if (error) return <div>failed to load</div>
 
   
 
   const submitStripInfo = async () =>{
-    console.log("data", data);
-
+    if(data == undefined){
+      return;
+    }
+    const token1 = JSON.parse(localStorage.getItem('auth')!);
+    // console.log("token", );
+    
     axios({
       method: 'post',
       url: 'http://localhost:8000/api/create-subscription',
       data : data,
       headers : {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        Authorization: 'Bearer ' + token1.token
       }
-    })
-      .then(res => {
-        console.log("response", res);
+    }).then(res => {
+        console.log("response", res.data.result);
+        data = undefined;
+        alert(res.data.result);
         
       }).catch((error) => {
         console.log("error", error);
